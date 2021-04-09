@@ -37,7 +37,7 @@ ul {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;

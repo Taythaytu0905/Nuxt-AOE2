@@ -11,25 +11,27 @@
 </template>
 
 <script>
-import strutures from "../../services/strutures";
 import Structure from "../../components/Structure";
+import {ref, useContext} from '@nuxtjs/composition-api'
 
 export default {
   components: {
     Structure,
   },
-  data() {
-    return {
-      structures: []
-    }
-  },
-  async created() {
-    try {
-      let res = await strutures.list()
-      this.structures = res.data.structures
-    } catch (err) {
-      console.log(err)
-    }
+  setup() {
+    const structures = ref([])
+    // useFetch(async () => {
+    //   try {
+    //     const res = await strutures.list()
+    //     structures.value = res.data.structures
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // })
+    const {store} = useContext()
+    store.dispatch('structures/getListStructures')
+    structures.value = store.state.structures.list_structures
+    return {structures}
   },
   head() {
     return {

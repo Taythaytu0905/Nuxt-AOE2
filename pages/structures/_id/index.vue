@@ -7,21 +7,21 @@
   </div>
 </template>
 <script>
-import strutures from "../../../services/strutures";
+import {computed, ref, useContext} from "@nuxtjs/composition-api";
 
 export default {
-  data() {
-    return {
-      structure: {}
-    }
-  },
-  async created() {
-    try {
-      let res = await strutures.detail(this.$route.params.id)
-      this.structure = res.data
-    } catch (err) {
-      console.log(err)
-    }
+  setup() {
+    const {store, route} = useContext()
+    const structure = ref(computed(() => store.getters['structures/getDetailStructure'](parseInt(route.value.params.id))))
+    // useFetch(async () => {
+    //   try {
+    //     const res = await strutures.detail(parseInt(route.value.params.id))
+    //     structure.value = res.data
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // })
+    return {structure}
   },
   head() {
     return {

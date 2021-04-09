@@ -8,6 +8,9 @@
       <li>
         <nuxt-link to="/structures">Structures</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/compositions">Compositions</nuxt-link>
+      </li>
     </ul>
   </header>
 </template>
